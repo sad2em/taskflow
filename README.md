@@ -1,65 +1,80 @@
 # TaskFlow
 
-A lightweight project and task management app built with PHP, MySQL/MariaDB, HTML, CSS and vanilla JavaScript.
+> A lightweight, self-hosted project and task management system for teams.
 
-TaskFlow is designed for small teams that need projects, tasks, a Kanban board, team management, roles and permissions, reports, notifications, activity history, and Arabic/English UI support without a frontend framework.
+TaskFlow helps teams organize projects, manage tasks, track progress, collaborate, and monitor productivity from one place.
 
-## Highlights
+Built with **PHP, MySQL/MariaDB, HTML, CSS, and Vanilla JavaScript** with a focus on simplicity, maintainability, and practical workflows.
 
-- Projects, tasks, subtasks and Kanban workflow
-- Team members, departments and project membership
-- Roles and granular permissions with built-in defaults
-- Arabic and English with automatic RTL/LTR layout switching
-- Comments, mentions, attachments and time tracking
-- Notifications and activity/audit log
-- Reports and productivity views
-- CSRF protection, password hashing and login throttling
-- MySQL/MariaDB with PDO
-- No build step and no frontend dependencies
+## ✨ Features
 
-## Requirements
+- 📁 Project and task management
+- 📋 Kanban board
+- ✅ Tasks and subtasks
+- 👥 Teams and departments
+- 🔐 Roles and permissions
+- 📊 Dashboard and reports
+- 🔔 Notifications
+- 💬 Comments and mentions
+- 📎 File attachments
+- ⏱️ Time tracking
+- 📝 Activity history
+- 🌍 English + Arabic localization
+- ↔️ LTR / RTL interface support
+- 🛡️ Authentication and security controls
 
-- PHP 8.0+
+> **Arabic support is currently partial and still being improved.** Some screens, components, and translations may not yet be fully optimized for Arabic and RTL.
+
+## 🧰 Tech Stack
+
+- **Backend:** PHP 8+
+- **Database:** MySQL / MariaDB
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Database Access:** PDO
+- **Authentication:** PHP Sessions
+- **API:** PHP endpoints
+
+No React, Vue, Laravel, Node.js, npm, or frontend build pipeline is required.
+
+## ⚡ Quick Start
+
+### Requirements
+
+- PHP 8+
 - MySQL 5.7+ or MariaDB 10.4+
 - PDO MySQL extension
-- Apache/XAMPP or PHP's built-in development server
 
-## Quick start
+### Installation
 
-### 1. Create the database
-
-Create an empty database named `taskflow`, then import:
-
-```text
-taskflow/database/setup.sql
+```bash
+git clone https://github.com/YOUR_USERNAME/taskflow.git
+cd taskflow
 ```
 
-The setup file creates the schema, roles, permissions, demo data and settings. It also adds the account locale column when it is missing, so the same file can be used to bring an older TaskFlow database up to date.
+Create a database named `taskflow`, then import:
 
-### 2. Configure the database
+```text
+database/setup.sql
+```
 
 Copy:
 
 ```text
-taskflow/config/env.example.php
+config/env.example.php
 ```
 
 to:
 
 ```text
-taskflow/config/env.php
+config/env.php
 ```
 
-Then set your MySQL/MariaDB credentials. For a default XAMPP installation, the example values are usually enough.
+and configure your database credentials.
 
-`env.php` is local configuration and should not be committed.
-
-### 3. Run locally
-
-From the repository root:
+Run locally:
 
 ```bash
-./serve.sh
+php -S 127.0.0.1:8099
 ```
 
 Then open:
@@ -68,60 +83,89 @@ Then open:
 http://127.0.0.1:8099
 ```
 
-On Windows, `serve.bat` can be used if PHP is available in `PATH`.
+For Windows and Linux/macOS helper scripts, see `serve.bat` and `serve.sh`.
 
-You can also serve the `taskflow/` directory through Apache/XAMPP.
+## 👤 Demo Accounts
 
-## Demo account
+The development database includes demo accounts for testing.
 
-The database setup includes demo accounts for local evaluation.
+| Role | Email | Password |
+|---|---|---|
+| Admin | `admin@taskflow.test` | `Admin@123` |
+| Manager | `sara@taskflow.test` | `Passw0rd!` |
+| Team Lead | `omar@taskflow.test` | `Passw0rd!` |
+| Supervisor | `lina@taskflow.test` | `Passw0rd!` |
+| Member | `jad@taskflow.test` | `Passw0rd!` |
 
-```text
-Admin:    admin@taskflow.test / Admin@123
-Manager:  sara@taskflow.test  / Passw0rd!
-Team Lead: omar@taskflow.test / Passw0rd!
-Supervisor: lina@taskflow.test / Passw0rd!
-Member:   jad@taskflow.test   / Passw0rd!
-```
+> Change or remove demo credentials before production deployment.
 
-Change or remove demo credentials before using the application with real data.
+## 🛡️ Security
 
-## Roles and permissions
+TaskFlow includes:
 
-Permissions are stored in the database rather than hard-coded into the UI. Built-in roles have recommended defaults, and administrators can restore those defaults from the Roles & Permissions screen.
+- Password hashing
+- CSRF protection
+- Session management
+- Login throttling
+- Role-based authorization
+- Permission checks
+- PDO prepared statements
+- Upload restrictions
 
-The application uses role slugs when resolving built-in roles, so database auto-increment IDs do not need to match the seed data.
+See [`SECURITY.md`](SECURITY.md) for additional guidance.
 
-## Localization
+## 🤝 Contributing
 
-English is the default language. Users can switch to Arabic from their profile/settings. The interface changes direction immediately and uses RTL layout for Arabic.
+Contributions, suggestions, and improvements are welcome.
 
-## Project structure
+Before submitting changes:
 
-```text
-.
-├── serve.sh
-├── serve.bat
-├── README.md
-└── taskflow/
-    ├── api/          API endpoints
-    ├── assets/       CSS and JavaScript
-    ├── config/       Local configuration
-    ├── database/     Database setup
-    ├── includes/     Application services and helpers
-    ├── pages/        Application pages
-    ├── storage/      Runtime state
-    ├── uploads/      User uploads
-    └── index.php     Application entry point
-```
+1. Test the application locally.
+2. Keep changes focused.
+3. Do not commit credentials or `config/env.php`.
+4. Test both English and Arabic when changing the UI.
+5. Document important changes.
 
-## Production notes
+See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-- Set `APP_ENV` to `production` and keep `APP_DEBUG` disabled.
-- Use a dedicated database user instead of `root`.
-- Keep `config/env.php` out of version control.
-- Keep `database/` inaccessible from the public web root. The included Apache rules already block direct access.
-- Review and remove demo accounts before deployment.
-- Back up the database before upgrades or permission changes.
-- Restrict write access to `uploads/` to the web server account.
+## 🗺️ Roadmap
 
+TaskFlow is actively evolving. Future improvements may include:
+
+- More complete Arabic localization and RTL coverage
+- Expanded reports and analytics
+- Automated testing
+- Extended API documentation
+- Additional integrations
+- Improved deployment tooling
+
+## 👨‍💻 Author
+
+### Asaad Eido
+
+Software Developer & Creator of **TaskFlow**.
+
+I build practical software with a focus on simplicity, maintainability, and real-world usability.
+
+### Connect
+
+- 📢 **Telegram:** [Cyber Horizon](https://t.me/cyber_horizon_channel)
+- 💼 **LinkedIn:** [Asaad Eido](https://www.linkedin.com/in/asaad-eido-515b20273/)
+
+---
+
+## ❤️ Final Note
+
+TaskFlow started with a simple idea:
+
+> **Make managing work easier without making the software harder to use.**
+
+The project is still evolving, and there is always room for better features, stronger testing, and a more polished experience.
+
+Thanks for checking out **TaskFlow**.
+
+If you find the project useful, consider giving it a ⭐ and sharing your feedback.
+
+**Built with PHP, MySQL, Vanilla JavaScript & a lot of ☕**
+
+© Asaad Eido — TaskFlow
