@@ -143,7 +143,7 @@ TaskFlow is actively evolving. Future improvements may include:
 
 ### Asaad Eido
 
-Software Developer & Creator of **TaskFlow**.
+Web Pentester & Creator of **TaskFlow**.
 
 I build practical software with a focus on simplicity, maintainability, and real-world usability.
 
