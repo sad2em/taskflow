@@ -13,7 +13,7 @@ sleep 1
 
 # ✅ التعديل: استخدام المسار النسبي بدلاً من المسار الثابت
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR/taskflow" || exit 1
+cd "$SCRIPT_DIR" || exit 1
 
 setsid nohup php -S 127.0.0.1:$PORT -t . > /tmp/php-server.log 2>&1 < /dev/null &
 sleep 3
